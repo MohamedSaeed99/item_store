@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from "react";
+import { ReactNode } from "react";
 
 interface ButtonProps {
     onClick: () => void;
@@ -7,7 +7,7 @@ interface ButtonProps {
 
 const Button:React.FC<ButtonProps> = ({children, onClick}) => {
     return (
-        <button onClick={onClick} className="border-solid border-[1px] p-[2px]">
+        <button onClick={onClick} className="rounded-sm flex justify-center items-center border-solid border-[1px] pl-4 pr-4">
             {children}
         </button>
     )
