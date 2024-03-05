@@ -1,14 +1,14 @@
-import Item from "@/app/components/Item/Item";
-import { IItem } from "@/models/Item"
+import Product from "@/app/components/Product/Product";
+import { IProduct } from "@/models/Product"
 
-const getItems = async ()  => {
-  const response = await fetch("http://127.0.0.1:8000/items");
-  const items = await response.json();
-  return items
+const getProducts = async ()  => {
+  const response = await fetch("http://127.0.0.1:8000/products/");
+  const products = await response.json();
+  return products
 }
 
 export default async function Home() {
-  const { items }: {items: IItem[]} = await getItems();
+  const products: IProduct[] = await getProducts();
 
   return (
     <main className="flex min-h-screen flex-col justify-between p-24">
@@ -16,8 +16,8 @@ export default async function Home() {
         Store
       </div>
       <div className="flex flex-wrap">
-        {items.map((item, index) => {
-          return <Item item={item} key={index} />
+        {products.map((product, index) => {
+          return <Product product={product} key={index} />
         })
         }
       </div>
