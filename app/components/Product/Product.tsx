@@ -25,9 +25,9 @@ const Product: React.FC<ProductProps> = ({ product }) => {
     return (
         <div className="border-solid border-[1px] m-2 hover:shadow-md">
             <div className="m-2">
-                <img className="h-48 w-48"/>
+                <img className="h-48 w-48" src={product.image}/>
                 <div className="flex justify-between">
-                    <span>{product.title}</span>
+                    <span className="w-24 overflow-x-ellipsis">{product.title}</span>
                     <span>{`$${product.price}`}</span>
                 </div>
                 <div className="flex justify-between">

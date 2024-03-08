@@ -4,7 +4,7 @@ import { useAppSelector } from "@/redux/store";
 import Button from "../Button/Button";
 
 const Header = () => {
-    const total = useAppSelector((state) => state.itemReducer.itemsSelected.map(items => items.price).reduce((a, b) => a + b, 0));
+    const total = useAppSelector((state) => state.productReducer.selectedProducts.map(products => products.price).reduce((a, b) => a + b, 0));
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD'
@@ -15,7 +15,7 @@ const Header = () => {
     }
 
     return (
-        <div className="flex justify-between">
+        <div className="w-screen fixed top-0 right-0 left-0 flex justify-between shadow-md pl-10 pr-10 pt-4 pb-4 bg-blue-50">
             <div>
                 Store
             </div>
