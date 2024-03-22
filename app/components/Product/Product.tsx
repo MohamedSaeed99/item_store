@@ -1,42 +1,21 @@
-"use client";
-
 import { IProduct } from "@/models/Product";
-import Button from "../Button/Button";
-import { addProduct, removeProduct } from "@/redux/features/product_slice";
-import { AppDispatch, useAppSelector } from "@/redux/store";
-import { useDispatch } from "react-redux";
 
 interface ProductProps {
     product: IProduct
 }
 
 const Product: React.FC<ProductProps> = ({ product }) => {
-    const dispatch = useDispatch<AppDispatch>();
-    const count = useAppSelector((state) => state.productReducer.selectedProducts.filter(productSelected => product == productSelected).length);
-
-    const handleAddProduct = () => {
-        dispatch(addProduct(product))
-    }
-
-    const handleRemoveProduct = () => {
-        dispatch(removeProduct(product))
-    }
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+    });
 
     return (
-        <div className="border-solid border-[1px] m-2 hover:shadow-md">
-            <div className="m-2">
-                <img className="h-48 w-48" src={product.image}/>
-                <div className="flex justify-between">
-                    <span className="w-24 overflow-x-ellipsis">{product.title}</span>
-                    <span>{`$${product.price}`}</span>
-                </div>
-                <div className="flex justify-between">
-                    <Button onClick={handleRemoveProduct}>-</Button>
-                    <div className="flex justify-center items-center border-solid border-[1px] rounded-sm">
-                        <p>{count}</p>
-                    </div>
-                    <Button onClick={handleAddProduct}>+</Button>
-                </div>
+        <div className="flex flex-col gap-1">
+            <img className="h-48 w-48" src={product.image}/>
+            <div className="flex flex-col">
+                <span className="overflow-x-ellipsis">{product.name}</span>
+                <span>{`${formatter.format(product.price)}`}</span>
             </div>
         </div>
     )

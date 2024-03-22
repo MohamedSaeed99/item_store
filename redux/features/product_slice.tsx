@@ -1,8 +1,9 @@
+import { ICart } from '@/models/Cart';
 import { IProduct } from '@/models/Product';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
-    selectedProducts: [] as IProduct[]
+    cart: [] as ICart[]
 }
 
 export const products = createSlice({
@@ -10,22 +11,30 @@ export const products = createSlice({
     initialState,
     reducers: {
         addProduct: (state, action: PayloadAction<IProduct>) => {
-            return {
-                selectedProducts: [...state.selectedProducts, action.payload]
-            };
+            const indexOfItem = state.cart.findIndex(item => { return item.product.id == action.payload.id });
+            if (indexOfItem == -1) {
+                state.cart.push({
+                    count : 1,
+                    product: action.payload
+                });
+            } else {
+                state.cart[indexOfItem].count += 1
+            }
         },
         removeProduct: (state, action: PayloadAction<IProduct>) => {
-            const selectedProducts = [...state.selectedProducts];
-            const index = selectedProducts.map(item => item.id).indexOf(action.payload.id, 0);
-            if(index > -1) {
-                selectedProducts.splice(index, 1)
+            const indexOfItem = state.cart.findIndex(item => { return item.product.id == action.payload.id });
+            if(indexOfItem == -1) {
+                return
+            } else {
+                if(state.cart[indexOfItem].count == 1) {
+                    state.cart.splice(indexOfItem, 1);
+                } else {
+                    state.cart[indexOfItem].count -= 1;
+                }
             }
-            return {
-                selectedProducts: selectedProducts
-            };
         }
     }
-})
+});
 
-export const {addProduct, removeProduct} = products.actions
+export const {addProduct, removeProduct} = products.actions;
 export default products.reducer;

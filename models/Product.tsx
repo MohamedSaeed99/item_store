@@ -5,10 +5,9 @@ export interface IRating {
 
 export interface IProduct {
     id: number,
-    title: string,
+    name: string,
     price: number,
     category: string,
-    description: string,
     image: string
     rate: IRating
 }
