@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import itemReducer from './features/item_slice'
+import productReducer from './features/product_slice'
 import { TypedUseSelectorHook, useSelector } from 'react-redux'
 
 export const store = configureStore({
   reducer: {
-    itemReducer
+    productReducer
   }
 })
 
