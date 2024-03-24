@@ -1,17 +1,18 @@
 import { IProduct } from "@/models/Product";
 
 interface ProductProps {
-    product: IProduct
+    product: IProduct,
+    className: string
 }
 
-const Product: React.FC<ProductProps> = ({ product }) => {
+const Product: React.FC<ProductProps> = ({ product, className }) => {
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD'
     });
 
     return (
-        <div className="flex flex-col gap-1">
+        <div className={`${className}`}>
             <img className="h-48 w-48" src={product.image}/>
             <div className="flex flex-col">
                 <span className="overflow-x-ellipsis">{product.name}</span>

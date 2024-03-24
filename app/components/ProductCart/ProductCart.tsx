@@ -7,7 +7,6 @@ import { IProduct } from "@/models/Product";
 import { addProduct, removeProduct } from "@/redux/features/product_slice";
 import { useDispatch } from "react-redux";
 
-
 const ProductCart = () => {
     const dispatch = useDispatch<AppDispatch>();
     const cart = useAppSelector((state) => state.productReducer.cart);
@@ -20,21 +19,17 @@ const ProductCart = () => {
         dispatch(removeProduct(product))
     }
 
-    const getTotalProductByProduct = (product: IProduct) => {
-
-    }
-
     return (
-        <div>
+        <div className="flex flex-col">
             {
                 cart.map((cart, index) => {
                     return (
                         <div key={index} className="border-solid border-[1px] p-2 m-2 hover:shadow-md">
-                            <Product product={cart.product} key={index} />
+                            <Product  className="flex flex-row gap-1" product={cart.product} key={index} />
                             <div className="flex justify-center items-center">
-                                <Button onClick={() => handleRemoveProduct(cart.product)}>-</Button>
-                                <div>
-                                    {}
+                                <Button onClick={() => handleRemoveProduct(cart.product)}>{cart.count == 1 ? "trash" : "-"}</Button>
+                                <div className="flex justify-center items-center border-solid border-[1px] w-10">
+                                    {cart.count}
                                 </div>
                                 <Button onClick={() => handleAddProduct(cart.product)}>+</Button>
                             </div>

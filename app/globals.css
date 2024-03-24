@@ -30,4 +30,14 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Chrome, Safari and Opera */
+  div::-webkit-scrollbar {
+    display: none;
+  }
+
+  div {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }

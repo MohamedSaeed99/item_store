@@ -1,29 +1,19 @@
-import { loadStripe } from "@stripe/stripe-js";
-import axios from "axios";
+import Checkout from "../components/Checkout/Checkout";
+import Header from "../components/Header/Header";
 import ProductCart from "../components/ProductCart/ProductCart";
 
-const stripePromise = loadStripe(
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
-);
-
-
 const Cart = () => {
-    const handleCheckout = async () => {
-        try {
-            const stripe = await stripePromise;
-
-            const sessionId = await axios.post('http://127.0.0.1:8000/checkout/').then(res => res.data)
-            await stripe!.redirectToCheckout({
-                sessionId: sessionId,
-            });
-        } catch(error) {
-            console.log(error)
-        }
-    }
-
-    return <div className="min-h-screen">
-        <ProductCart />
-    </div>
+    return (
+        <div className="flex">
+            <div className="h-screen w-1/2 p-2 overflow-y-auto">
+                <ProductCart className="flex flex-row gap-1" />
+            </div>
+            <div className="border-solid border-[1px]"></div>
+            <div className="flex justify-center items-center h-screen w-1/2 p-10">
+                <Checkout />
+            </div>
+        </div>
+    )
 }
 
 export default Cart;

@@ -1,5 +1,3 @@
-"use client";
-
 import { IProduct } from "@/models/Product";
 import Product from "../Product/Product";
 import Button from "../Button/Button";
@@ -27,8 +25,8 @@ const ItemsWrapper = async () => {
             {
                 products.map((product, index) => {
                     return (
-                        <div key={index} className="border-solid border-[1px] p-2 m-2 hover:shadow-md">
-                            <Product product={product} key={index} />
+                        <div key={index} className="border-solid border-[1px] border-black p-2 m-2 hover:shadow-md">
+                            <Product  className="flex flex-col gap-1" product={product} key={index} />
                             <div className="flex justify-center items-center">
                                 <Button onClick={() => handleAddProduct(product)}>Add to Cart</Button>
                             </div>

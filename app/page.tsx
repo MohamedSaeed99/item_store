@@ -1,3 +1,5 @@
+"use client";
+
 import Header from "./components/Header/Header";
 import ProductsWrapper from "./components/ProductsWrapper/ProductsWrapper";
 
